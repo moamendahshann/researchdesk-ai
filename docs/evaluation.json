@@ -1,0 +1,30 @@
+{
+  "scope": "4 synthetic lexical queries; not representative of real-world performance",
+  "top1_accuracy": 1.0,
+  "cases": [
+    {
+      "query": "solar electricity",
+      "expected_page": 1,
+      "actual_page": 1,
+      "correct": true
+    },
+    {
+      "query": "bicycle repair",
+      "expected_page": 2,
+      "actual_page": 2,
+      "correct": true
+    },
+    {
+      "query": "food collection",
+      "expected_page": 3,
+      "actual_page": 3,
+      "correct": true
+    },
+    {
+      "query": "اعادة التدوير",
+      "expected_page": 4,
+      "actual_page": 4,
+      "correct": true
+    }
+  ]
+}
