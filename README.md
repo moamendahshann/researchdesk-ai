@@ -1,6 +1,17 @@
 # ResearchDesk AI
 
-A local document research workspace with page-level evidence and optional AI answers.
+**Find the passage. Keep the source.** A local PDF research workspace with page-level evidence and optional AI answers.
+
+[![Tests](https://github.com/moamendahshann/researchdesk-ai/actions/workflows/tests.yml/badge.svg)](https://github.com/moamendahshann/researchdesk-ai/actions/workflows/tests.yml)
+
+[Quick start](#quick-start) · [Architecture](#architecture) · [Arabic guide](START-HERE-AR.md) · [Contribution guide](CONTRIBUTING.md)
+
+| Core capability | What it does |
+| --- | --- |
+| Local document library | Text-based PDFs stored in a local SQLite workspace |
+| Evidence-first search | Ranked passages linked to their original PDF pages |
+| Arabic and English | Keyword retrieval with Arabic text normalisation |
+| Optional AI synthesis | Opt-in generation through a configured compatible provider |
 
 Built for Moamen Dahshan's portfolio with AI-assisted implementation. This is an educational single-user application, not a deployed commercial service.
 
@@ -74,6 +85,16 @@ Generation is off by default. When enabled per query, the question and retrieved
 ## Architecture
 
 Browser → FastAPI → PDF extraction / SQLite → TF-IDF ranking → source passages → optional remote generation.
+
+```mermaid
+flowchart LR
+  A[Text PDF] --> B[Local extraction and SQLite]
+  Q[Question or keywords] --> C[TF-IDF ranking]
+  B --> C
+  C --> D[Passages with page links]
+  D --> E[Reader verifies original source]
+  D -. Explicit opt-in .-> F[Configured AI provider]
+```
 
 * `app/core.py`: PDF extraction, overlapping chunks, Arabic normalization, TF-IDF cosine ranking.
 * `app/main.py`: HTTP API, persistence, browser origin checks, optional model integration.
